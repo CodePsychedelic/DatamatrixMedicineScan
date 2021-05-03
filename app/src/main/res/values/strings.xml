@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MedicineCodeScan</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="general_mainReturnString">Return to main menu</string>
+
+    <!-- Main Activity -->
+    <string name="ma_scanCodeString">scan code</string>
+    <string name="ma_viewProductString">view product list</string>
+    <string name="ma_truncateDatabaseString">Truncate Database</string>
+    <string name="productExplanation">Το προιόν είναι αποτέλεσμα δουλειάς του φοιτητή Γκούζια Αλκιβιάδη
+        με αριθμό μητρώου 40815 στα πλαίσια πτυχιακής με τίτλο: Αναγνώριση 
+        και αποκωδικοποίηση Data Matrix \n\n
+        
+        Συνοπτικός Οδηγός:\n
+        
+        Κουμπί scan codes. Πατήστε το για να τεθεί σε λειτουργία η διαδικασία σάρωσης.\n\n\n
+        Κουμπί view product list. Πατήστε το για να δείτε τη λίστα προιόντων που έχετε σαρώσει\n\n\n 
+        Κουμπί view categories. Πατήστε το για να δείτε τις κατηγορίες προιόντων που υποστηρίζει η εφαρμογή	</string>
+	
+	<!-- Radio Buttons Text -->
+	<string name="ma_withoutAlgorithmRadioString">Without Algorithm</string>
+	<string name="ma_withAlgorithmRadioString">With Algorithm</string>
+	<!-- __________________ -->
+	
+	<!-- CheckBoxes Text -->
+	<string name="ma_grayscaleCheckString">GrayScale</string>
+	<string name="ma_contrastCheckString">Contrast</string>
+	<string name="ma_edCheckString">Erode-Dilate</string>
+	<string name="ma_binarizeCheckString">Binarize</string>
+	<string name="ma_deCheckString">Dilate-Erode</string>
+	
+	<string name="ma_blurCheckString">Blur</string>
+	<string name="ma_borderizeCheckString">Border</string>
+	<!-- __________________ -->
+    
+    <!-- __________________________________________ -->
+
+
+    <!-- ImageActivity -->
+
+    <string name="ia_InputImageString">Source Image</string>
+    <string name="ia_OutputImageString">Output Image</string>
+    <string name="ia_codeString">Κωδικός</string>
+    <string name="ia_signProductButtonString">Καταγραφή</string>
+    <string name="ia_backToScanningActivityString">Επιστροφή</string>
+    <string name="ia_backToStartOptionString">Επιστροφή σε αρχικό μενού</string>
+
+    <!-- __________________________________________ -->
+
+
+    <!-- SignProductDynamicActivity -->
+    <string name="spa_ProductCodeLabelString">Product Code:</string>
+    <string name="spa_ProductNameLabelString">Product Name:</string>
+    <string name="spa_ProductCategoryLabelString">Product Category:</string>
+
+    <string-array name="spa_productCategoryArray">
+        <item>Medicine</item>
+        <item>Cigarrete</item>
+        <item>Phone</item>
+    </string-array>
+   	<!--  -->
+
+    <!-- Scanning Activity -->
+    <string name="sa_captureImageString">Capture Image</string>
+    <string name="sa_goBackString">Back to main menu.</string>
+    <!--  -->
+
+
+    <!-- Product List Activity -->
+    <string name="pla_searchFieldString">Search by code</string>
+    <string name="pla_productListString">Products</string>
+    <string name="pla_changeCategoryCheckboxString">Change Category</string>
+    <!--  -->
+    
+    
+    
+    
+    <!-- Serial Number List Activity -->
+    	<string name="psla_titleString">Products with GTIN:</string>
+    <!--  -->
+    <string name="title_activity_scanning">ScanningActivity</string>
+    <string name="title_activity_products">ProductsActivity</string>
+    <string name="title_activity_categories">CategoriesActivity</string>
+    <string name="title_activity_image">ImageActivity</string>
+    <string name="title_activity_view_product">ViewProductActivity</string>
+    <string name="title_activity_sign_product">SignProductActivity</string>
+    <string name="title_activity_sign_product_dynamic">SignProductDynamic</string>
+    <string name="title_activity_product_information">ProductInformationActivity</string>
+    <string name="title_activity_products_list">ProductsListActivity</string>
+    <string name="title_activity_categories_list">CategoriesListActivity</string>
+    <string name="title_activity_product_serial_list">ProductSerialList</string>
+
+</resources>

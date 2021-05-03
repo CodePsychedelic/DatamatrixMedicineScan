@@ -1,0 +1,84 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<LinearLayout 
+    android:id="@+id/ma_linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+  >
+    
+    <TextView
+        android:id="@+id/imageInputTitle"
+        android:text="Input image"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        />
+    
+    
+    <ImageView
+        android:id="@+id/imageInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <!-- android:src="@drawable/abc_ab_bottom_solid_dark_holo" /> -->
+
+    <TextView
+        android:id="@+id/imageResultTitle"
+        android:text="Result"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        />
+    
+    
+    <ImageView
+        android:id="@+id/imageResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <!-- android:src="@drawable/abc_ab_bottom_solid_dark_holo" /> -->
+
+    <TextView
+        android:id="@+id/ia_codeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/ia_notifyMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/ia_signProductButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/ia_signProductButtonString" />
+
+        <Button
+            android:id="@+id/ia_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/ia_backToScanningActivityString" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ia_mainReturnButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/general_mainReturnString" />
+
+</LinearLayout>
+</ScrollView>

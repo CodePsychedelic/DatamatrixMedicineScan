@@ -1,0 +1,103 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ma_scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/ma_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.datamatrixMedicineScan.MainActivity" >
+
+        <Button
+            android:id="@+id/ma_scanStartButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_scanCodeString" />
+
+        <Button
+            android:id="@+id/ma_viewProductsButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_viewProductString" />
+
+        <Button
+            android:id="@+id/ma_truncateDatabaseButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_truncateDatabaseString" />
+
+        <RadioGroup
+            android:id="@+id/ma_algorithmRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             >
+
+        
+                <RadioButton
+                    android:id="@+id/ma_withoutAlgorithmRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ma_withoutAlgorithmRadioString" />
+
+                <RadioButton
+                    android:id="@+id/ma_withAlgorithmRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ma_withAlgorithmRadioString" />
+
+     
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/ma_grayscaleCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_grayscaleCheckString" />
+
+        <CheckBox
+            android:id="@+id/ma_contrastCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_contrastCheckString" />
+
+        <CheckBox
+            android:id="@+id/ma_deCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_edCheckString" />
+
+        <CheckBox
+            android:id="@+id/ma_binarizeCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_binarizeCheckString" />
+
+        <CheckBox
+            android:id="@+id/ma_finalDilateCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_deCheckString" />
+         
+        <CheckBox
+            android:id="@+id/ma_blurCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_blurCheckString" />
+        
+        <CheckBox
+            android:id="@+id/ma_borderizeCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_borderizeCheckString" />
+
+    </LinearLayout>
+
+</ScrollView>

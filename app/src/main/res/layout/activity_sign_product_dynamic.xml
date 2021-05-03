@@ -1,0 +1,49 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/spam_MainScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+   <LinearLayout
+       android:id="@+id/spd_rootLayout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:paddingBottom="@dimen/activity_vertical_margin"
+       android:paddingLeft="@dimen/activity_horizontal_margin"
+       android:paddingRight="@dimen/activity_horizontal_margin"
+       android:paddingTop="@dimen/activity_vertical_margin"
+       tools:context="com.example.datamatrixMedicineScan.SignProductActivity" >
+
+        <TextView
+            android:id="@+id/pia_productCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spa_ProductCodeLabelString" />
+
+        <EditText
+            android:id="@+id/spd_productCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spa_ProductCategoryLabelString" />
+
+        <Spinner
+            android:id="@+id/spd_categorySelection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spa_productCategoryArray"
+            android:prompt="@string/spa_ProductCategoryLabelString" />
+
+    </LinearLayout>
+
+</ScrollView>

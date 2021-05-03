@@ -1,0 +1,188 @@
+#
+# generated on 2015/03/30 07:34:35
+#
+# --table-start--
+dataClass=dbHelper.GTIN
+tableName=GTIN
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=GTIN_code
+# --field-end--
+# --field-start--
+fieldName=category
+canBeNull=false
+foreign=true
+indexName=GTIN_category_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Categories(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.Category
+tableName=Categories
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=category
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.ProductAttributes
+tableName=ProductAttributes
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=serial
+canBeNull=false
+foreign=true
+indexName=ProductAttributes_serial_idx
+foreignAutoRefresh=true
+columnDefinition=integer references SerialNumbers(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --field-start--
+fieldName=property
+canBeNull=false
+foreign=true
+indexName=ProductAttributes_property_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Fields(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --field-start--
+fieldName=value
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.Field
+tableName=Fields
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=type
+canBeNull=false
+foreign=true
+indexName=Fields_type_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Types(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --field-start--
+fieldName=fieldId
+# --field-end--
+# --field-start--
+fieldName=fieldName
+# --field-end--
+# --field-start--
+fieldName=fieldValue
+# --field-end--
+# --field-start--
+fieldName=fieldClass
+# --field-end--
+# --field-start--
+fieldName=fieldContent
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.Pattern
+tableName=Patterns
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=field
+canBeNull=false
+foreign=true
+indexName=Patterns_field_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Fields(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --field-start--
+fieldName=patternIdentifier
+# --field-end--
+# --field-start--
+fieldName=patternType
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.Type
+tableName=Types
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=category
+canBeNull=false
+foreign=true
+indexName=Types_category_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Categories(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=dbHelper.SerialNumber
+tableName=SerialNumbers
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=serialNumber
+# --field-end--
+# --field-start--
+fieldName=product
+canBeNull=false
+foreign=true
+indexName=SerialNumbers_product_idx
+foreignAutoRefresh=true
+columnDefinition=integer references GTIN(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --field-start--
+fieldName=type
+canBeNull=false
+foreign=true
+indexName=SerialNumbers_type_idx
+foreignAutoRefresh=true
+columnDefinition=integer references Types(id) on delete cascade on update cascade
+foreignColumnName=id
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
