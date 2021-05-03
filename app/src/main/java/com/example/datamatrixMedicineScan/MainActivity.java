@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
 	// checkboxes
 	// ---------------------------------------------------------
-	private ArrayList<CheckBox> aCheckboxes;
-	private ArrayList<CheckBox> bCheckboxes;
-	private ArrayList<CheckBox> cCheckboxes;
+	private ArrayList<CheckBox> aCheckboxes;	// main algorithm flow checkboxes
+	private ArrayList<CheckBox> bCheckboxes;	// border checkboxes
+	private ArrayList<CheckBox> cCheckboxes;	// blur checkboxes
 	private class CheckboxRule{
 		private String rule;
 		private CheckBox checkbox;
@@ -74,31 +74,47 @@ public class MainActivity extends AppCompatActivity {
 	// ---------------------------------------------------------
 	
 	OnCheckedChangeListener checkedGrpListener=new OnCheckedChangeListener(){
-		
+
+
+		// RADIOBUTTON CHECKED CHANGED LISTENER
+		// -----------------------------------------------------------------------------------------
 		@Override
 		public void onCheckedChanged(RadioGroup group,int checkedId){
 
 			// if radiobutton "withAlgorithm" is selected, the algorithm checkboxes will be visible
 			if(checkedId == R.id.ma_withAlgorithmRadio){
-				for(int i=0;i<aCheckboxes.size();i++){
-					aCheckboxes.get(i).setVisibility(View.VISIBLE);
-					if(i<bCheckboxes.size())bCheckboxes.get(i).setVisibility(View.VISIBLE);
-					if(i<cCheckboxes.size())cCheckboxes.get(i).setVisibility(View.VISIBLE);
+				for(int i=0; i<aCheckboxes.size(); i++){
+					aCheckboxes.get(i).setVisibility(View.VISIBLE);								// set a_group visible
+					if(i<bCheckboxes.size())bCheckboxes.get(i).setVisibility(View.VISIBLE);		// set b_group visible
+					if(i<cCheckboxes.size())cCheckboxes.get(i).setVisibility(View.VISIBLE);		// set c_group visible
 				}
 				
 			}else{
 				// else disable selections and set invisible
-				for(int i=0;i<aCheckboxes.size();i++){
-					aCheckboxes.get(i).setVisibility(View.INVISIBLE);
-					aCheckboxes.get(i).setChecked(false);
-					if(i<bCheckboxes.size())bCheckboxes.get(i).setVisibility(View.INVISIBLE);
-					if(i<cCheckboxes.size())cCheckboxes.get(i).setVisibility(View.INVISIBLE);
+				for(int i=0; i<aCheckboxes.size(); i++){
+					aCheckboxes.get(i).setVisibility(View.INVISIBLE);							// invisible - a
+					aCheckboxes.get(i).setChecked(false);										// disable - a
+
+					// same for b,c
+					if(i<bCheckboxes.size()){
+						bCheckboxes.get(i).setVisibility(View.INVISIBLE);
+						bCheckboxes.get(i).setChecked(false);
+					}
+					if(i<cCheckboxes.size()){
+						cCheckboxes.get(i).setVisibility(View.INVISIBLE);
+						cCheckboxes.get(i).setChecked(false);
+					}
 				}
 				
 			}
 		}
 	};
-	
+	// -----------------------------------------------------------------------------------------
+
+
+
+	// ONCHECKED LISTENER FOR CHECKBOXES
+	// ----------------------------------------------------------------------------------------
 	CompoundButton.OnCheckedChangeListener checkedListener=new CompoundButton.OnCheckedChangeListener(){
 		
 		@Override
@@ -125,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
 		}
 	};
+	// ----------------------------------------------------------------------------------------
+
 	View.OnClickListener buttonListener=new View.OnClickListener(){
 		
 		@Override

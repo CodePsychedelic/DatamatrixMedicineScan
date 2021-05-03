@@ -65,7 +65,7 @@ public class ProductInformationActivity extends AppCompatActivity {
 		}
 	};
 	
-	private class TextF extends EditText{
+	private class TextF extends androidx.appcompat.widget.AppCompatEditText{
 		private String name;
 		private String ai="-1";
 		

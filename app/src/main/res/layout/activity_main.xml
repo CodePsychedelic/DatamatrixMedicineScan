@@ -1,9 +1,12 @@
+
+<!-- will be scrollview - we want to be able to scroll if ... -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ma_scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <!-- linear layout will contain the main body of main activity -->
     <LinearLayout
         android:id="@+id/ma_linearLayout"
         android:layout_width="match_parent"
