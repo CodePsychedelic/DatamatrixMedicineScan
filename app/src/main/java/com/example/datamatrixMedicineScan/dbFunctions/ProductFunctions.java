@@ -1,4 +1,4 @@
-package dbFunctions;
+package com.example.datamatrixMedicineScan.dbFunctions;
 
 import android.content.Context;
 
@@ -13,9 +13,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import dbHelper.Category;
-import dbHelper.DBMiddle;
-import dbHelper.GTIN;
+import com.example.datamatrixMedicineScan.dbHelper.Category;
+import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
+import com.example.datamatrixMedicineScan.dbHelper.GTIN;
 
 
 public class ProductFunctions{

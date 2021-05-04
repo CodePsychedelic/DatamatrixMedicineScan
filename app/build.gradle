@@ -43,8 +43,8 @@ dependencies {
     implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
     implementation 'com.journeyapps:zxing-android-embedded:4.0.2'
     implementation group: 'com.mytechia', name: 'opencv', version: '3.1.0'
-    compile 'com.android.support:appcompat-v7:+'
-    compile group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
+    implementation 'com.android.support:appcompat-v7:+'
+    implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
 //Thanks for using https://jar-download.com
 
 //Thanks for using https://jar-download.com

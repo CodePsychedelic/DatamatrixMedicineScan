@@ -1,4 +1,4 @@
-package dbHelper;
+package com.example.datamatrixMedicineScan.dbHelper;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

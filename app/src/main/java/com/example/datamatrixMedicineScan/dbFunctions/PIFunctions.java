@@ -1,4 +1,4 @@
-package dbFunctions;
+package com.example.datamatrixMedicineScan.dbFunctions;
 
 import android.content.Context;
 
@@ -13,10 +13,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import dbHelper.DBMiddle;
-import dbHelper.Field;
-import dbHelper.ProductAttributes;
-import dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
+import com.example.datamatrixMedicineScan.dbHelper.Field;
+import com.example.datamatrixMedicineScan.dbHelper.ProductAttributes;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
 
 public class PIFunctions{
 

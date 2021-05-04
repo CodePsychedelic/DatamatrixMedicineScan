@@ -7,16 +7,16 @@ import com.j256.ormlite.stmt.DeleteBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
-import dbFunctions.CategoryFunctions;
-import dbFunctions.FSFunctions;
-import dbFunctions.PIFunctions;
-import dbFunctions.PatternFunctions;
-import dbFunctions.ProductFunctions;
-import dbFunctions.SerialFunctions;
-import dbFunctions.TypeFunctions;
-import dbHelper.Field;
-import dbHelper.ProductAttributes;
-import dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbFunctions.CategoryFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.FSFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.PIFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.PatternFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.SerialFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.TypeFunctions;
+import com.example.datamatrixMedicineScan.dbHelper.Field;
+import com.example.datamatrixMedicineScan.dbHelper.ProductAttributes;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
 
 public class Tools{
 	public static ProductFunctions pf;

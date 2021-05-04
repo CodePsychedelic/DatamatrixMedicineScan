@@ -1,4 +1,4 @@
-package dbFunctions;
+package com.example.datamatrixMedicineScan.dbFunctions;
 
 import android.content.Context;
 
@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import dbHelper.DBMiddle;
-import dbHelper.Pattern;
-import dbHelper.Type;
+import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
+import com.example.datamatrixMedicineScan.dbHelper.Pattern;
+import com.example.datamatrixMedicineScan.dbHelper.Type;
 
 public class PatternFunctions{
 //context

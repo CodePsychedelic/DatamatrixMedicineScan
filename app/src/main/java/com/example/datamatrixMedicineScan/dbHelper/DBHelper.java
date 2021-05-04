@@ -1,4 +1,4 @@
-package dbHelper;
+package com.example.datamatrixMedicineScan.dbHelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

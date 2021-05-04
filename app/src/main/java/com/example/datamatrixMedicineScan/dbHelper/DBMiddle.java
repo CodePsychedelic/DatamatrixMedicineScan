@@ -1,4 +1,4 @@
-package dbHelper;
+package com.example.datamatrixMedicineScan.dbHelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -157,31 +157,26 @@ public class DBMiddle{
 			typeRuntimeExceptionDao=getRuntimeExceptionTypeDao();
 			productAttributesRuntimeExceptionDao=getRuntimeExceptionProductInformationDao();
 			serialRuntimeExceptionDao=getRuntimeExceptionSerialDao();
-			
-			/*
-			patternRuntimeExceptionDao.deleteBuilder().delete();
-			fsRuntimeExceptionDao.deleteBuilder().delete();
-			typeRuntimeExceptionDao.deleteBuilder().delete();
-			piRuntimeExceptionDao.deleteBuilder().delete();
-			productRuntimeExceptionDao.deleteBuilder().delete();
-			categoryRuntimeExceptionDao.deleteBuilder().delete();
-			*/
-			
+
+
+			// empty database
+			// ---------------------------------------------------------------
 			//empty pattern and attributes
 			patternRuntimeExceptionDao.deleteBuilder().delete();
 			piRuntimeExceptionDao.deleteBuilder().delete();
+
 			//empty fields and serial numbers
 			fsRuntimeExceptionDao.deleteBuilder().delete();
 			serialRuntimeExceptionDao.deleteBuilder().delete();
+
 			//empty type and gtin
 			typeRuntimeExceptionDao.deleteBuilder().delete();
 			productRuntimeExceptionDao.deleteBuilder().delete();
+
 			//empty category
 			categoryRuntimeExceptionDao.deleteBuilder().delete();
-			
-			
-			
-			//categoryRuntimeExceptionDao.
+			// ---------------------------------------------------------------
+
 			
 			//initial categories
 			//========================================
@@ -215,7 +210,8 @@ public class DBMiddle{
 			//=========================================
 			
 	
-			
+			// fields creation
+			// ---------------------------------------------------------------
 			Field GTINLabel=new Field(allT,881,"GTINLabel","Global Trade Item Number:","Label","-");
 			Field medicineGTINText=new Field(allT,991,"GTIN","-","EditText","String");
 			
@@ -229,46 +225,55 @@ public class DBMiddle{
 			Field medicineBatchText=new Field(allT,994,"MedicineBatch","-","EditText","String");
 			
 			Field medicineTypeLabel=new Field(allT,885,"MedicineNameLabel","Medicine Name:","Label","-");
-			Field medicineTypeText=new Field(allT,995,"MedicineName","-","EditText","String");
-			
+			Field medicineNameText=new Field(allT,995,"MedicineName","-","EditText","String");
+			// ---------------------------------------------------------------
 
-			
-			Pattern m_GTINai=new Pattern(medicineGTINText,"01","n14");
-			Pattern m_expDateAI=new Pattern(medicineExpDateText,"15","n6");
-			Pattern m_SNai=new Pattern(medicineSNText,"21","n1-20");
+
+			// application identifiers init
+			// ---------------------------------------------------------------
+			Pattern m_gtinAI=new Pattern(medicineGTINText,"01","n14");
+			Pattern m_expDateAI=new Pattern(medicineExpDateText,"15","n6");	// need to correct this
+			Pattern m_serialAI=new Pattern(medicineSNText,"21","n1-20");
 			Pattern m_batchAI=new Pattern(medicineBatchText,"10","s1-20");
-			Pattern m_typeAI=new Pattern(medicineTypeText,"90","s3-20");
-			
-	
+			Pattern m_nameAI=new Pattern(medicineNameText,"90","s3-20");		// this is a custom field -- not correct by the standard
+			// ---------------------------------------------------------------
+
+			// Antipyretic pills custom fields
+			// ---------------------------------------------------------------
 			Field a_pillsRecomendedDosologyLabel=new Field(a_pills,111,"AntipireticPillsNumberLabel","Number of pills per day:","Label","-");
 			Field a_pillsRecomendedDosologyText=new Field(a_pills,11,"AntipyreticPillsPerDay","-","EditText","Integer");
 			Field a_pillsNumberInPackageLabel=new Field(a_pills,112,"AntipireticPillsTabletsLabel","Tablets in Pack:","Label","-");
 			Field a_pillsNumberInPackageText=new Field(a_pills,12,"AntipyreticPillsNumber","-","EditText","Integer");
 			Field a_pillsButton=new Field(a_pills,13,"pillsSubmitButton","Submit Antipyretic Fields","Button","-");
-			
+			// ---------------------------------------------------------------
+
+			// Antipyretic liquid medicine custom fields
+			// ---------------------------------------------------------------
 			Field a_syrupRecDosologyLabel=new Field(a_syrup,221,"AntipyreticSyrupDosolLabel","Spoons of syrup","Label","-");
 			Field a_syrupRecDosologyText=new Field(a_syrup,21,"AntipyreticSyrupDosol","-","EditText","Integer");
 			Field a_syrupQuantityLabel=new Field(a_syrup,222,"AntipyreticSyrupQuantityLabel","Quantity of syrup (ml)","Label","-");
 			Field a_syrupQuantityText=new Field(a_syrup,22,"AntipyreticSyrupQuantity","-","EditText","Integer");
 			Field a_syrupButton=new Field(a_syrup,23,"antipyreticSyrupButton","Submit antipyretic syrup","Button","-");
-			
-			
+			// ---------------------------------------------------------------
+
+			// Nasal pills medicine custom fields
+			// ---------------------------------------------------------------
 			Field n_pillsRecomendedDosologyLabel=new Field(n_pills,331,"NasalPillsNumberLabel","Recomended Dosol(per day)","Label","-");
 			Field n_pillsRecomendedDosologyText=new Field(n_pills,31,"NasalPillsDosology","-","EditText","Integer");
 			Field n_pillsNumberInPackageLabel=new Field(n_pills,332,"NasalPillsNumberInPackageLabel","Number in package","Label","-");
 			Field n_pillsNumberInPackageText=new Field(n_pills,32,"NasalPillsNumberInPackage","-","EditText","Integer");
 			Field n_pillsButton=new Field(n_pills,33,"nasalPillsButton","Submit Nasal Medicine","Button","-");
-			
+			// ---------------------------------------------------------------
+
+			// Nasal spray medicine custom fields
+			// ---------------------------------------------------------------
 			Field n_sprayRecomendedDosologyLabel=new Field(n_spray,441,"NasalSprayDosologyLabel","Recomended Sprays(per day)","Label","-");
 			Field n_sprayRecomendedDosologyText=new Field(n_spray,41,"NasalSprayDosology","-","EditText","Integer");
 			Field n_sprayQuantityLabel=new Field(n_spray,442,"NasalSprayQuantityLabel","Quantity in ml","Label","-");
 			Field n_sprayQuantityText=new Field(n_spray,42,"NasalSprayQuantity","-","EditText","Integer");
 			Field n_sprayButton=new Field(n_spray,43,"nasalSprayButton","Submit Nasal Spray Medicine","Button","-");
-			
-			
-			
-			
-			
+			// ---------------------------------------------------------------
+
 
 			Field i_pillsRecomendedDosologyLabel=new Field(i_pills,551,"InflamationPillsDosologyLabel","Recomended pills per day:","Label","-");
 			Field i_pillsRecomendedDosologyText=new Field(i_pills,51,"InfalamtionPillsDosology","-","EditText","Integer");
@@ -340,7 +345,7 @@ public class DBMiddle{
 			fsRuntimeExceptionDao.create(medicineBatchText);
 			
 			fsRuntimeExceptionDao.create(medicineTypeLabel);
-			fsRuntimeExceptionDao.create(medicineTypeText);
+			fsRuntimeExceptionDao.create(medicineNameText);
 			//==================================================
 			
 			
@@ -391,11 +396,11 @@ public class DBMiddle{
 			fsRuntimeExceptionDao.create(i_gellQuantityText);
 			fsRuntimeExceptionDao.create(i_gellButton);
 			
-			patternRuntimeExceptionDao.create(m_GTINai);
-			patternRuntimeExceptionDao.create(m_SNai);
+			patternRuntimeExceptionDao.create(m_gtinAI);
+			patternRuntimeExceptionDao.create(m_serialAI);
 			patternRuntimeExceptionDao.create(m_expDateAI);
 			patternRuntimeExceptionDao.create(m_batchAI);
-			patternRuntimeExceptionDao.create(m_typeAI);
+			patternRuntimeExceptionDao.create(m_nameAI);
 			
 			
 	
@@ -416,7 +421,7 @@ public class DBMiddle{
 				productAttributesRuntimeExceptionDao.create(pa);
 				pa=new ProductAttributes(sn,medicineBatchText,"5ab");
 				productAttributesRuntimeExceptionDao.create(pa);
-				pa=new ProductAttributes(sn,medicineTypeText,"Panadol Extra");
+				pa=new ProductAttributes(sn,medicineNameText,"Panadol Extra");
 				productAttributesRuntimeExceptionDao.create(pa);
 				
 				

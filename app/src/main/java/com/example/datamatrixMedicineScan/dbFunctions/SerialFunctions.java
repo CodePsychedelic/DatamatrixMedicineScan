@@ -1,4 +1,4 @@
-package dbFunctions;
+package com.example.datamatrixMedicineScan.dbFunctions;
 
 import android.content.Context;
 
@@ -11,8 +11,8 @@ import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
-import dbHelper.DBMiddle;
-import dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
 
 
 public class SerialFunctions{

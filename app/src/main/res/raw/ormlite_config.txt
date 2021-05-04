@@ -2,7 +2,7 @@
 # generated on 2015/03/30 07:34:35
 #
 # --table-start--
-dataClass=dbHelper.GTIN
+dataClass=com.example.datamatrixMedicineScan.dbHelper.GTIN
 tableName=GTIN
 # --table-fields-start--
 # --field-start--
@@ -25,7 +25,7 @@ foreignColumnName=id
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.Category
+dataClass=com.example.datamatrixMedicineScan.dbHelper.Category
 tableName=Categories
 # --table-fields-start--
 # --field-start--
@@ -39,7 +39,7 @@ fieldName=category
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.ProductAttributes
+dataClass=com.example.datamatrixMedicineScan.dbHelper.ProductAttributes
 tableName=ProductAttributes
 # --table-fields-start--
 # --field-start--
@@ -71,7 +71,7 @@ fieldName=value
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.Field
+dataClass=com.example.datamatrixMedicineScan.dbHelper.Field
 tableName=Fields
 # --table-fields-start--
 # --field-start--
@@ -106,7 +106,7 @@ fieldName=fieldContent
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.Pattern
+dataClass=com.example.datamatrixMedicineScan.dbHelper.Pattern
 tableName=Patterns
 # --table-fields-start--
 # --field-start--
@@ -132,7 +132,7 @@ fieldName=patternType
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.Type
+dataClass=com.example.datamatrixMedicineScan.dbHelper.Type
 tableName=Types
 # --table-fields-start--
 # --field-start--
@@ -155,7 +155,7 @@ foreignColumnName=id
 # --table-end--
 #################################
 # --table-start--
-dataClass=dbHelper.SerialNumber
+dataClass=com.example.datamatrixMedicineScan.dbHelper.SerialNumber
 tableName=SerialNumbers
 # --table-fields-start--
 # --field-start--

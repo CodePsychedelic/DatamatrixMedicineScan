@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,16 +21,16 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import dbFunctions.FSFunctions;
-import dbFunctions.PIFunctions;
-import dbFunctions.PatternFunctions;
-import dbFunctions.ProductFunctions;
-import dbFunctions.SerialFunctions;
-import dbHelper.Field;
-import dbHelper.GTIN;
-import dbHelper.Pattern;
-import dbHelper.ProductAttributes;
-import dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbFunctions.FSFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.PIFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.PatternFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.SerialFunctions;
+import com.example.datamatrixMedicineScan.dbHelper.Field;
+import com.example.datamatrixMedicineScan.dbHelper.GTIN;
+import com.example.datamatrixMedicineScan.dbHelper.Pattern;
+import com.example.datamatrixMedicineScan.dbHelper.ProductAttributes;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
 
 public class ProductInformationActivity extends AppCompatActivity {
 	private LinearLayout root;

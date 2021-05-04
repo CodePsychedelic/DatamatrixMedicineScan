@@ -37,9 +37,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import dbFunctions.ProductFunctions;
-import dbFunctions.SerialFunctions;
-import dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
+import com.example.datamatrixMedicineScan.dbFunctions.SerialFunctions;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
 
 public class ImageActivity extends AppCompatActivity {
 
@@ -179,8 +179,8 @@ public class ImageActivity extends AppCompatActivity {
 		parameters.put("code",code);
 		// -----------------------------------------------------------------------------
 
-		List<dbHelper.GTIN> result=null;
-		dbHelper.GTIN existsProduct=null;
+		List<com.example.datamatrixMedicineScan.dbHelper.GTIN> result=null;
+		com.example.datamatrixMedicineScan.dbHelper.GTIN existsProduct=null;
 		SerialNumber existsSerial=null;
 		boolean exists=false;
 		try{

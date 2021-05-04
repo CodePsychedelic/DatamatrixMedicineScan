@@ -15,13 +15,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.j256.ormlite.stmt.UpdateBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,13 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import dbFunctions.CategoryFunctions;
-import dbFunctions.ProductFunctions;
-import dbHelper.Category;
-import dbHelper.Field;
-import dbHelper.GTIN;
-import dbHelper.SerialNumber;
-import dbHelper.Type;
+import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
+import com.example.datamatrixMedicineScan.dbHelper.GTIN;
 
 
 // LIST PRODUCTS BY GTIN CODE AND CATEGORY

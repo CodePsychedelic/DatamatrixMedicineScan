@@ -29,12 +29,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import dbHelper.Category;
-import dbHelper.Field;
-import dbHelper.GTIN;
-import dbHelper.Pattern;
-import dbHelper.SerialNumber;
-import dbHelper.Type;
+import com.example.datamatrixMedicineScan.dbHelper.Category;
+import com.example.datamatrixMedicineScan.dbHelper.Field;
+import com.example.datamatrixMedicineScan.dbHelper.GTIN;
+import com.example.datamatrixMedicineScan.dbHelper.Pattern;
+import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.dbHelper.Type;
 
 public class SignProductDynamic extends AppCompatActivity {
 
