@@ -77,7 +77,6 @@ public class ProductSerialList extends AppCompatActivity {
 
 	
 	private OnItemClickListener onItemClickListener=new OnItemClickListener(){
-
 		@Override
 		public void onItemClick(AdapterView<?> arg0,View arg1,int pos,long arg3){
 			// TODO Auto-generated method stub
@@ -88,34 +87,11 @@ public class ProductSerialList extends AppCompatActivity {
 			tokens[1]=text.substring(text.indexOf(" ")+1,text.length());
 			String productSerial=tokens[0];
 			String productType=tokens[1];
-			if(chagneTypeCheckbox.isChecked()){
-				try{
-					List<Type> types= Tools.tf.qb(2).
-							where().
-							ne("type",productType).
-							and().eq("category_id",category_id).query();
-					Type ct= Tools.tf.qb(2).
-							where().
-							eq("type",productType).
-							and().
-							eq("category_id",category_id).
-							queryForFirst();
 
-					String typeInformation[]=new String[types.size()];
-					for(int i=0;i<types.size();i++){
-						typeInformation[i]=types.get(i).getType()+";"+types.get(i).getId();
-					}
-
-					printSelection(typeInformation,productSerial,ct.getId());
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
-			}else{
-				HashMap<String,Object> extra=new HashMap<String,Object>();
-				extra.put("code",productSerial);
-				extra.put("GTIN",GTIN_code);
-				createActivity("productInformation",extra);
-			}
+			HashMap<String,Object> extra=new HashMap<String,Object>();
+			extra.put("code",productSerial);
+			extra.put("GTIN",GTIN_code);
+			createActivity("productInformation",extra);
 		}
 	};
 
@@ -133,76 +109,7 @@ public class ProductSerialList extends AppCompatActivity {
 
 	}
 
-	//prints a selectbox for type selection
-	//arguments:String categoriesInfo[]-> contains the categories_string;categories_id (foreach category)
-//				String productCode -> contains the GTIN code
-	public void printSelection(String typesInfo[],String productSerial,int ctId){
-		Builder selectDialog=new Builder(this);
-		//create final string for gtin code
-		final String code=productSerial;
-		final int currentTypeId=ctId;
-		//new table for categories selection
-		String selections[]=new String[typesInfo.length];
-		//new table for categories id
-		String id[]=new String[typesInfo.length];
-		//parse each categoriesInfo
-		for(int i=0;i<selections.length;i++){
-			String tokens[]=typesInfo[i].split(";");
-			selections[i]=tokens[0];
-			id[i]=tokens[1];
-		}
-		//final strings for selections and ids
-		final String fSelections[]=selections;
-		final String fid[]=id;
-		selectDialog.setItems(fSelections,new DialogInterface.OnClickListener(){
 
-			@Override
-			public void onClick(DialogInterface dialog,int which){
-				// TODO Auto-generated method stub
-				//onclick dismiss the dialog
-				//get the category id that was selected
-				//===================
-				dialog.dismiss();
-				String id=fid[which];
-				//===================
-
-				UpdateBuilder<SerialNumber,Integer> sub= Tools.sf.ub(2);
-
-				try{
-					//update where gtin code
-					//set category id to new category
-					//================================
-					sub.where().eq("serialNumber",code).and().eq("product_id",productId);
-					sub.updateColumnValue("type_id",id);
-					sub.update();
-					//================================
-
-					List <Field> fields= Tools.fs.qb(2).where().eq("type_id",currentTypeId).query();
-					List <Field> newFields= Tools.fs.qb(2).where().
-							eq("type_id",id).
-							and().
-							not().like("fieldName","%Button").
-							and().
-							not().like("fieldName","%Label").
-							query();
-
-
-
-					DeleteBuilder<ProductAttributes,Integer> padb= Tools.pif.db(2);
-
-					SerialNumber sn= Tools.sf.qb(2).where().eq("serialNumber",code).and().eq("product_id",productId).queryForFirst();
-					Tools.reallocFields(padb,fields,newFields,sn);
-
-
-
-					//re initialize
-					initializeSerialList();
-				}catch(SQLException e){e.printStackTrace();}
-			}
-		});
-		selectDialog.show();
-
-	}
 
 
 
@@ -222,7 +129,6 @@ public class ProductSerialList extends AppCompatActivity {
 		productsNumberView=(TextView)findViewById(R.id.psla_totalProductsView);
 		searchFieldText=(EditText)findViewById(R.id.psla_searchFieldText);
 		serialList=(ListView)findViewById(R.id.psla_serialList);
-		chagneTypeCheckbox=(CheckBox)findViewById(R.id.psla_changeTypeCheckbox);
 
 		if(intent.getBooleanExtra("change",false)){
 			try{

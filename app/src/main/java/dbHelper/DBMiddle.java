@@ -198,7 +198,7 @@ public class DBMiddle{
 			//initial types for each CATEGORY
 			//=========================================
 			Type a_pills=new Type("pills",antipyretic);
-			Type a_syrup=new Type("syrup",antipyretic);
+			Type a_syrup=new Type("liquid medicine",antipyretic);
 			
 			Type n_pills=new Type("pills",nasal);
 			Type n_spray=new Type("spray",nasal);
@@ -209,7 +209,7 @@ public class DBMiddle{
 			
 			Type i_pills=new Type("pills",inflamation);
 			Type i_spray=new Type("spray",inflamation);
-			Type i_gel=new Type("gell",inflamation);
+			Type i_gel=new Type("ointment",inflamation);
 		
 			Type allT=new Type("all",allC);
 			//=========================================

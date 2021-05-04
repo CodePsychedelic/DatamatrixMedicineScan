@@ -38,7 +38,7 @@ import dbHelper.SerialNumber;
 import dbHelper.Type;
 
 
-// List by GTIN code
+// LIST PRODUCTS BY GTIN CODE AND CATEGORY
 public class ProductsListActivity extends AppCompatActivity {
 
 	private ArrayAdapter<String> listAdapter;
@@ -47,7 +47,6 @@ public class ProductsListActivity extends AppCompatActivity {
 	private EditText searchFieldText;
 	private ListView productList;
 	private Button goBackButton;
-	private CheckBox changeCategoryCheckbox;
 	private Class<?> activitiesList[]=new Class<?>[]{MainActivity.class, ProductSerialList.class};
 	private HashMap<String,Class<?>> classMap=new HashMap<String,Class<?>>();
 	private Context context=this;
@@ -87,16 +86,6 @@ public class ProductsListActivity extends AppCompatActivity {
 	};
 	// --------------------------------------------------------------------------------------
 
-	private DialogInterface.OnClickListener categorySelectListener=new DialogInterface.OnClickListener(){
-
-		@Override
-		public void onClick(DialogInterface dialog,int which){
-			// TODO Auto-generated method stub
-			dialog.dismiss();
-			printMessage("selection",""+which,null);
-
-		}
-	};
 
 	// onItemClickListener -- Product clicked
 	// --------------------------------------------------------------------------------------
@@ -108,50 +97,27 @@ public class ProductsListActivity extends AppCompatActivity {
 			String listSelection=list.getItemAtPosition(pos).toString();	// get item
 			String tokens[]=listSelection.split(" ");				// split by space
 
-			// change category checkbox is checked
-			// --------------------------------------------------------------------------------------
-			if(changeCategoryCheckbox.isChecked()){
-				change=true;
-				String category=tokens[1];	// get category
-				CategoryFunctions cf=new CategoryFunctions(context);	// init category functions
-				try{
-					// select all available category options besides all category
-					List<Category> categoriesList=cf.qb(2).where().ne("category",category).and().ne("category","all").query();
-					String categories[]=new String[categoriesList.size()];	// init a string list
-					for(int i=0;i<categoriesList.size();i++){
-						// populate it with category string plus and id seperated by ; --> category;id
-						categories[i]=categoriesList.get(i).getCategory()+";"+categoriesList.get(i).getId();
-					}
 
-					printSelection(categories,tokens[0]);	// printSelection is a function
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
-			// --------------------------------------------------------------------------------------
+			String productCode=tokens[0];	// get product code
+			try{
+				HashMap<String,Object> extra=new HashMap<String,Object>();	// new hasmap for extra fields -- new activity with data
+				extra.put("code",productCode);								// needs product code as "code"
+
+				// will need category id -- fetch it
+				extra.put("category_id", String.valueOf(Tools.pf.qb(2).where().eq("GTIN_code",productCode).queryForFirst().getProductCategory().getId()));
+
+				// will need product id -- fetch it
+				extra.put("product_id",String.valueOf(Tools.pf.qb(2).where().eq("GTIN_code",productCode).queryForFirst().getId()));
+
+				// pass change
+				extra.put("change",change);
+
+				// create view serials activities to inspect serials under the GTIN selected
+				createActivity("viewSerialNumbers", extra);
+			}catch(SQLException e){
+				e.printStackTrace();
 			}
-			// change category option is not checked -- will call a new activity
-			// --------------------------------------------------------------------------------------
-			else{
-				String productCode=tokens[0];	// get product code
-				try{
-					HashMap<String,Object> extra=new HashMap<String,Object>();	// new hasmap for extra fields -- new activity with data
-					extra.put("code",productCode);								// needs product code as "code"
 
-					// will need category id -- fetch it
-					extra.put("category_id", String.valueOf(Tools.pf.qb(2).where().eq("GTIN_code",productCode).queryForFirst().getProductCategory().getId()));
-
-					// will need product id -- fetch it
-					extra.put("product_id",String.valueOf(Tools.pf.qb(2).where().eq("GTIN_code",productCode).queryForFirst().getId()));
-
-					// pass change
-					extra.put("change",change);
-
-					// create view serials activities to inspect serials under the GTIN selected
-					createActivity("viewSerialNumbers", extra);
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
-			}
 		}
 	};
 	// --------------------------------------------------------------------------------------
@@ -261,118 +227,13 @@ public class ProductsListActivity extends AppCompatActivity {
 	// --------------------------------------------------------------------------------------
 
 
-	// prints a selectbox for category selection
-	// arguments:	String categoriesInfo[] -> contains the categories_string;categories_id (foreach category)
-	//				String productCode 		-> contains the GTIN code
+	// printMessage method -- title, message and optional activity redirect
 	// --------------------------------------------------------------------------------------
-	public void printSelection(String categoriesInfo[],String productCode){
-		Builder selectDialog=new Builder(this);			// select dialog
-		final String code=productCode;							// create final string for gtin code
-		String selections[]=new String[categoriesInfo.length]; 	// new table for categories selection
-		String id[]=new String[categoriesInfo.length]; 			// new table for categories id
-
-		//parse each categoriesInfo
-		for(int i=0;i<selections.length;i++){
-			String tokens[]=categoriesInfo[i].split(";");
-			selections[i]=tokens[0];
-			id[i]=tokens[1];
-		}
-
-		//final strings for selections and ids
-		final String fSelections[]=selections;
-		final String fid[]=id;
-
-		// create dialog, set items and clickListener
-		selectDialog.setItems(fSelections,new DialogInterface.OnClickListener(){
-
-			@Override
-			public void onClick(DialogInterface dialog,int which){
-
-				//onclick dismiss the dialog
-				//get the category id that was selected
-				//===================
-				dialog.dismiss();
-				String id=fid[which];
-				//===================
-
-				ProductFunctions pf=new ProductFunctions(context);
-				UpdateBuilder<GTIN,Integer> pub=pf.ub(2);
-
-
-				try{
-					//update where gtin code
-					//set category id to new category
-					//================================
-					pub.where().eq("GTIN_code",code);
-					pub.updateColumnValue("category_id",id);
-					pub.update();
-					//================================
-
-					// get product database id using GTIN
-					int pid= Tools.pf.qb(2).where().
-							eq("GTIN_code",code).queryForFirst().getId();
-
-					// get product serial numbers scanned, using product id
-					List<SerialNumber> sns= Tools.sf.qb(2).where().
-							eq("product_id",pid).query();
-
-					// get type based on category id
-					Type defaultType= Tools.tf.qb(2).where().
-							eq("category_id",id).
-							queryForFirst();
-
-
-					/*
-					where.and(
-        where.not().like("supertypes", '%' + SuperType.BASIC.name() + '%'),
-        where.like("types", '%' + CardType.LAND.name() + '%')
-    );
-					 */
-
-					// get the new fields for our new category -- exclude buttons and labels
-					List <Field> newFields= Tools.fs.qb(2).where().
-							eq("type_id",defaultType.getId()).
-							and().not().like("fieldName","%Button").
-							and().not().like("fieldName","%Label").
-							query();
-
-
-					for(int i=0;i<sns.size();i++){
-						List<Field> fields= Tools.fs.qb(2).where().
-								eq("type_id",sns.get(i).getType().getId()).query();
-
-						Tools.reallocFields(Tools.pif.db(2),fields,newFields,sns.get(i));
-
-					}
-
-					UpdateBuilder<SerialNumber,Integer> sub= Tools.sf.ub(2);
-					sub.where().eq("product_id",pid);
-					sub.updateColumnValue("type_id",defaultType.getId());
-					sub.update();
-
-
-					//List<Field> fields=Tools.fs.qb(2).where().eq()
-
-
-					//reallocFields(Tools.pif.db(2),fields,newFields,code)
-					//for(int i=0;i<sns.size();i++){
-						//sns.get(i).setType(defaultType);
-					//}
-					//re initialize
-					initializeProductsList();
-				}catch(SQLException e){e.printStackTrace();}
-			}
-		});
-		selectDialog.show();
-
-	}
-
 	public void printMessage(String title,String message,Class<?> activity){
 		final Class<?> a=activity;
 
 		AlertDialog alertDialog=new Builder(this).create();
 		alertDialog.setTitle(title);
-		//alertDialog.setMessage("������� �� �� ��������� ����� ����� ������������ �� ������ ���������� �����");
 		alertDialog.setMessage(message);
 
 		alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
@@ -391,30 +252,45 @@ public class ProductsListActivity extends AppCompatActivity {
 
 		alertDialog.show();
 	}
+	// --------------------------------------------------------------------------------------
 
 
 
+	// ONCREATE -- INIT EVERYTHING
+	// --------------------------------------------------------------------------------------
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_products_list);
+
+		// initialize tools
 		Tools.initializeTools(this);
+
+		// initialize the classMap
+		// ----------------------------------------------------------
 		classMap.put("start",activitiesList[0]);
 		classMap.put("viewSerialNumbers",activitiesList[1]);
+		// ----------------------------------------------------------
 
-
+		// get the components from view
+		// ----------------------------------------------------------
 		searchFieldText=(EditText)findViewById(R.id.pla_searchFieldText);
 		productList=(ListView)findViewById(R.id.pla_productList);
 		goBackButton=(Button)findViewById(R.id.pla_goBackButton);
-		changeCategoryCheckbox=(CheckBox)findViewById(R.id.pla_changeCategoryCheckbox);
+		// ----------------------------------------------------------
 
+		// initialize the product list
 		initializeProductsList();
 
+
+		// add the listeners
+		// ----------------------------------------------------------
 		searchFieldText.addTextChangedListener(watcher);
 		productList.setOnItemClickListener(onItemClickListener);
 		goBackButton.setOnClickListener(buttonListener);
+		// ----------------------------------------------------------
 
 	}
-
+	// --------------------------------------------------------------------------------------
 
 }

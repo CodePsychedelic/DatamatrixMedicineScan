@@ -37,12 +37,6 @@
         android:layout_height="146dp" >
     </ListView>
 
-    <CheckBox
-        android:id="@+id/pla_changeCategoryCheckbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pla_changeCategoryCheckboxString" />
-
     <Button
         android:id="@+id/pla_goBackButton"
         android:layout_width="wrap_content"
