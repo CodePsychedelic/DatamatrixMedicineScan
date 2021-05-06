@@ -53,8 +53,6 @@ public class ImageActivity extends AppCompatActivity {
 	private Button backToMainActivityButton;
 	
 	private String scannedCode;
-	private String GTIN;
-	private String serial;
 	
 	private Class<?> activitiesList[]=new Class<?>[]{MainActivity.class, ScanningActivity.class, SignProductDynamic.class};
 	private HashMap<String,Class<?>> classMap=new HashMap<String,Class<?>>();
@@ -358,28 +356,7 @@ public class ImageActivity extends AppCompatActivity {
 
 		return borderizedImage;
 	}
-	public void printMessage(String title,String message,Class<?> activity){
-		final Class<?> a=activity;
 
-		AlertDialog alertDialog=new AlertDialog.Builder(this).create();
-		alertDialog.setTitle(title);
-		alertDialog.setMessage(message);
-		alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
-				"OK",
-				new DialogInterface.OnClickListener(){
-
-					@Override
-					public void onClick(DialogInterface dialog,int which){
-						// TODO Auto-generated method stub
-						dialog.dismiss();
-						if(a!=null){
-							//createActivity(a);
-						}
-					}
-				});
-
-		alertDialog.show();
-	}
 	public Mat optimizeImage(Mat frame){
 		Mat proccessFrame=frame;
 		Mat kernel;

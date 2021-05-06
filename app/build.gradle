@@ -40,11 +40,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-android
     implementation group: 'com.j256.ormlite', name: 'ormlite-android', version: '4.45'
-    implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
+    //implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
     implementation 'com.journeyapps:zxing-android-embedded:4.0.2'
-    implementation group: 'com.mytechia', name: 'opencv', version: '3.1.0'
+    //implementation group: 'com.mytechia', name: 'opencv', version: '3.1.0'    // COMMENTED OUT TO IMPLEMENT STATICALLY
     implementation 'com.android.support:appcompat-v7:+'
-    implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
+    //implementation group: 'com.mypoolin', name: 'sdk', version: '2.1.4'
+    implementation project(':opencv')                                           // INCLUDED THIS TO MAKE IT STATIC
 //Thanks for using https://jar-download.com
 
 //Thanks for using https://jar-download.com

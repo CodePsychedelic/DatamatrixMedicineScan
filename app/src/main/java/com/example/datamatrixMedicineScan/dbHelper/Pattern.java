@@ -50,7 +50,7 @@ public class Pattern{
 		this.field=field;
 	}
 
-	public String getPattern(){
+	public String getPatternIdentifier(){
 		return patternIdentifier;
 	}
 

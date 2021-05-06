@@ -47,6 +47,15 @@ private int width_end;
 private final int box_width = 400;
 private final int box_height = 400;
 
+/*
+* 	ADDED THIS LINE OF CODE TO MAKE IT RUN ON EMULATOR
+*
+* */
+	static {
+		OpenCVLoader.initDebug();
+
+	}
+
 
 	View.OnTouchListener touchListener=new View.OnTouchListener(){
 
@@ -241,13 +250,18 @@ private final int box_height = 400;
 	
 	
 	
-	
+	/*
+	*  COMMENTED OUT PREVIOUS IMPLEMENTATION
+	*  IMPLEMENTED STATIC SO THAT IT CAN RUN ON EMULATOR
+	* */
 	
 	@Override
     public void onResume(){
     	super.onResume();
-    	OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_9,this,mLoaderCallback);
-    	
+    	//OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_9,this,mLoaderCallback);
+		if(mOpenCvCameraView != null) {
+			mOpenCvCameraView.enableView();
+		}
     }
 	
 	

@@ -343,10 +343,10 @@ public class SignProductDynamic extends AppCompatActivity {
 					//get the pattern of GS1 standard attached to the field
 					//and save it in a form ai->fieldName for later use
 					Pattern pattern= Tools.paf.qb(2).where().eq("field_id",field.getId()).query().get(0);
-					AItoField.put(pattern.getPattern(),field);
+					AItoField.put(pattern.getPatternIdentifier(),field);
 					//DEBUG
 					//========
-					Log.d("PATTERN:",pattern.getPattern());
+					Log.d("PATTERN:",pattern.getPatternIdentifier());
 					//========
 					//foreach token of code
 					for(int k=0;k<tokens.length;k++){
@@ -360,7 +360,7 @@ public class SignProductDynamic extends AppCompatActivity {
 								Log.d("FOUND AI:",ai);
 								//if the AI is the same that the pattern of the field
 								//we are processing
-								if(ai.equals(pattern.getPattern())){
+								if(ai.equals(pattern.getPatternIdentifier())){
 									//save the code value to the fieldV
 									for(int j=2;j<c.length;j++){
 										fieldV+=c[j];
@@ -547,7 +547,7 @@ public class SignProductDynamic extends AppCompatActivity {
 						TextF e=new TextF(this,field.getFieldName(),field.getFieldContent());
 						e.setId(field.getFieldId());
 						if(p!=null){
-							e.setAI(p.getPattern()+";"+p.getPatternType());
+							e.setAI(p.getPatternIdentifier()+";"+p.getPatternType());
 
 						}
 						rootLayout.addView(e);
@@ -926,7 +926,7 @@ public class SignProductDynamic extends AppCompatActivity {
 					TextF etxt=new TextF(this,fieldName,fieldContent);
 					etxt.setId(fieldId);
 					if(p!=null){
-						etxt.setAI(p.getPattern()+";"+p.getPatternType());
+						etxt.setAI(p.getPatternIdentifier()+";"+p.getPatternType());
 					}
 					layout.addView(etxt);
 				}else if(type.equals("Button")){

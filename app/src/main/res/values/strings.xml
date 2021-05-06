@@ -18,7 +18,8 @@
         
         Κουμπί scan codes. Πατήστε το για να τεθεί σε λειτουργία η διαδικασία σάρωσης.\n\n\n
         Κουμπί view product list. Πατήστε το για να δείτε τη λίστα προιόντων που έχετε σαρώσει\n\n\n 
-        Κουμπί view categories. Πατήστε το για να δείτε τις κατηγορίες προιόντων που υποστηρίζει η εφαρμογή	</string>
+        Κουμπί view categories. Πατήστε το για να δείτε τις κατηγορίες προιόντων που υποστηρίζει η εφαρμογή
+	</string>
 	
 	<!-- Radio Buttons Text -->
 	<string name="ma_withoutAlgorithmRadioString">Without Algorithm</string>
@@ -43,10 +44,10 @@
 
     <string name="ia_InputImageString">Source Image</string>
     <string name="ia_OutputImageString">Output Image</string>
-    <string name="ia_codeString">Κωδικός</string>
-    <string name="ia_signProductButtonString">Καταγραφή</string>
-    <string name="ia_backToScanningActivityString">Επιστροφή</string>
-    <string name="ia_backToStartOptionString">Επιστροφή σε αρχικό μενού</string>
+    <string name="ia_codeString">Code</string>
+    <string name="ia_signProductButtonString">Register</string>
+    <string name="ia_backToScanningActivityString">Scan Again</string>
+    <string name="ia_backToStartOptionString">Main Menu</string>
 
     <!-- __________________________________________ -->
 

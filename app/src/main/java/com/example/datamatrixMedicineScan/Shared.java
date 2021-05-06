@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class Shared {
 	public static Mat frameForProcess;
-	public static String x;
 	
 	/*
 	public static boolean grayscale=false;
