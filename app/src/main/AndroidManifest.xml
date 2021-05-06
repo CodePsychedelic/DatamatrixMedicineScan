@@ -32,7 +32,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,32 +41,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScanningActivity"
+            android:name=".UI.ScanningActivity"
             android:label="@string/title_activity_scanning"
             android:screenOrientation="landscape" >
         </activity>
 
         <activity
-            android:name=".ImageActivity"
+            android:name=".UI.ImageActivity"
             android:label="@string/title_activity_image"
             android:screenOrientation="portrait" >
         </activity>
 
         <activity
-            android:name=".SignProductDynamic"
+            android:name=".UI.SignProductDynamic"
             android:label="@string/title_activity_sign_product_dynamic" >
         </activity>
         <activity
-            android:name=".ProductInformationActivity"
+            android:name=".UI.ProductInformationActivity"
             android:label="@string/title_activity_product_information" >
         </activity>
         <activity
-            android:name=".ProductsListActivity"
+            android:name=".UI.ProductsListActivity"
             android:label="@string/title_activity_products_list" >
         </activity>
 
         <activity
-            android:name=".ProductSerialList"
+            android:name=".UI.ProductSerialList"
             android:label="@string/title_activity_product_serial_list" >
         </activity>
     </application>

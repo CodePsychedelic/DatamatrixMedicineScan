@@ -1,7 +1,5 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
-
-import android.content.Context;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
 import com.example.datamatrixMedicineScan.dbFunctions.SerialFunctions;
 import com.example.datamatrixMedicineScan.dbHelper.GTIN;

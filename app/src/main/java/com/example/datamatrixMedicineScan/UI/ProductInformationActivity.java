@@ -1,4 +1,4 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.datamatrixMedicineScan.R;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 

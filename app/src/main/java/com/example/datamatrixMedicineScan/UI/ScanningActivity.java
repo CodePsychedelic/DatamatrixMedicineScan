@@ -1,7 +1,6 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -10,6 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.datamatrixMedicineScan.R;
+import com.example.datamatrixMedicineScan.tools.Shared;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;

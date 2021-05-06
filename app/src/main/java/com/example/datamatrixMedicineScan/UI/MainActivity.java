@@ -1,4 +1,4 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,8 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
-
+import com.example.datamatrixMedicineScan.tools.Shared;
 
 
 public class MainActivity extends AppCompatActivity {

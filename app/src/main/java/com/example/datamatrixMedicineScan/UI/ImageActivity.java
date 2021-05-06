@@ -1,7 +1,5 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.datamatrixMedicineScan.R;
+import com.example.datamatrixMedicineScan.tools.Shared;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;

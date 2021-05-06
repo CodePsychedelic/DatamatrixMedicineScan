@@ -1,4 +1,4 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -26,8 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
 import com.example.datamatrixMedicineScan.dbHelper.GTIN;
+import com.example.datamatrixMedicineScan.tools.Tools;
 
 
 // LIST PRODUCTS BY GTIN CODE AND CATEGORY

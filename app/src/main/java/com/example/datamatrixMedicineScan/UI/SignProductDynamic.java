@@ -1,4 +1,4 @@
-package com.example.datamatrixMedicineScan;
+package com.example.datamatrixMedicineScan.UI;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.datamatrixMedicineScan.R;
+import com.example.datamatrixMedicineScan.tools.Tools;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
