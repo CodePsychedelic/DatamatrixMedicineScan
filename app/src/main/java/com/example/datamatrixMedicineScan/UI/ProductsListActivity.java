@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,12 +23,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
 import com.example.datamatrixMedicineScan.dbHelper.GTIN;
-import com.example.datamatrixMedicineScan.tools.Tools;
+import com.example.datamatrixMedicineScan.util.ActivityHelper;
+import com.example.datamatrixMedicineScan.util.Tools;
 
 
 // LIST PRODUCTS BY GTIN CODE AND CATEGORY
@@ -46,6 +45,7 @@ public class ProductsListActivity extends AppCompatActivity {
 	private Context context=this;
 	private boolean change=false;
 
+	private ActivityHelper activityHelper;
 
 	// text watcher for GTIN search
 	// --------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ public class ProductsListActivity extends AppCompatActivity {
 				extra.put("change",change);
 
 				// create view serials activities to inspect serials under the GTIN selected
-				createActivity("viewSerialNumbers", extra);
+				startActivity(activityHelper.createActivity("viewSerialNumbers", extra));
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -123,44 +123,11 @@ public class ProductsListActivity extends AppCompatActivity {
 
 		@Override
 		public void onClick(View v){
-			createActivity("start",null);
+			startActivity(activityHelper.createActivity("start",null));
 		}
 	};
 	// --------------------------------------------------------------------------------------
 
-
-
-	// createActivity method -- shortcut for creating a new activity
-	// --------------------------------------------------------------------------------------
-	public void createActivity(String activity, HashMap<String,Object> extra){
-		Intent intent=new Intent(this,classMap.get(activity));	// fetch class from classMap (hashmap)
-
-		// if extra not null, set it dynamically
-		if(extra!=null){
-			Set<String> keySet=extra.keySet();
-			Object keys[]=keySet.toArray();
-			for(int i=0;i<keys.length;i++){
-				intent.putExtra(keys[i].toString(),extra.get(keys[i]).toString());
-			}
-		}
-		startActivity(intent);	// start new activity
-	}
-	// --------------------------------------------------------------------------------------
-
-	// same method, using class not string
-	// --------------------------------------------------------------------------------------
-	public void createActivity(Class<?> activity, HashMap<String,Object> extra){
-		Intent intent=new Intent(this,activity);
-		if(extra!=null){
-			Set<String> keySet=extra.keySet();
-			Object keys[]=keySet.toArray();
-			for(int i=0;i<keys.length;i++){
-				intent.putExtra(keys[i].toString(),extra.get(keys[i]).toString());
-			}
-		}
-		startActivity(intent);
-	}
-	// --------------------------------------------------------------------------------------
 
 
 	// searchProduct method -- will be called to search by GTIN code
@@ -239,7 +206,7 @@ public class ProductsListActivity extends AppCompatActivity {
 						// TODO Auto-generated method stub
 						dialog.dismiss();
 						if(a!=null){
-							createActivity(a,null);
+							startActivity(activityHelper.createActivity(a,null));
 						}
 					}
 				});
@@ -260,11 +227,14 @@ public class ProductsListActivity extends AppCompatActivity {
 		// initialize tools
 		Tools.initializeTools(this);
 
+
 		// initialize the classMap
 		// ----------------------------------------------------------
 		classMap.put("start",activitiesList[0]);
 		classMap.put("viewSerialNumbers",activitiesList[1]);
 		// ----------------------------------------------------------
+
+		activityHelper = new ActivityHelper(this, classMap);
 
 		// get the components from view
 		// ----------------------------------------------------------

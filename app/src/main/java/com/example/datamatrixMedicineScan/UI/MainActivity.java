@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbHelper.DBMiddle;
-import com.example.datamatrixMedicineScan.tools.Shared;
+import com.example.datamatrixMedicineScan.util.Shared;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -63,15 +63,7 @@ public class MainActivity extends AppCompatActivity {
 	private ArrayList<CheckBox> aCheckboxes;	// main algorithm flow checkboxes
 	private ArrayList<CheckBox> bCheckboxes;	// border checkboxes
 	private ArrayList<CheckBox> cCheckboxes;	// blur checkboxes
-	private class CheckboxRule{
-		private String rule;
-		private CheckBox checkbox;
-		
-		public CheckboxRule(String rule,CheckBox checkbox){
-			this.rule=rule;
-			this.checkbox=checkbox;
-		}
-	}
+
 	// ---------------------------------------------------------
 	
 	OnCheckedChangeListener checkedGrpListener=new OnCheckedChangeListener(){

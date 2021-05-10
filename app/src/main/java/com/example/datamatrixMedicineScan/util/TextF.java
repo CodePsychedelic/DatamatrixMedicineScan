@@ -1,10 +1,10 @@
-package com.example.datamatrixMedicineScan.tools;
+package com.example.datamatrixMedicineScan.util;
 
 import android.content.Context;
 
 // CUSTOM TEXT FIELD
 // ---------------------------------------------------------------------------
-class TextF extends androidx.appcompat.widget.AppCompatEditText{
+public class TextF extends androidx.appcompat.widget.AppCompatEditText{
     // NAME AND APPLICATION IDENTIFIER
     private String name;
     private String ai="-1";
@@ -14,19 +14,19 @@ class TextF extends androidx.appcompat.widget.AppCompatEditText{
         this.name=name;
     }
 
-    private String getName(){
+    public String getName(){
         return name;
     }
 
-    private String getAI(){
+    public String getAI(){
         return ai;
     }
 
-    private void setName(String name){
+    public void setName(String name){
         this.name=name;
     }
 
-    private void setAI(String ai){
+    public void setAI(String ai){
         this.ai=ai;
     }
 }

@@ -22,7 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.datamatrixMedicineScan.R;
-import com.example.datamatrixMedicineScan.tools.Tools;
+import com.example.datamatrixMedicineScan.util.Tools;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;

@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.datamatrixMedicineScan.R;
-import com.example.datamatrixMedicineScan.tools.Shared;
+import com.example.datamatrixMedicineScan.util.Shared;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
@@ -21,6 +21,7 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
+import org.opencv.videoio.VideoCapture;
 
 import java.util.HashMap;
 
@@ -28,26 +29,32 @@ import java.util.HashMap;
 public class ScanningActivity extends AppCompatActivity {
 
 
-private JavaCameraView mOpenCvCameraView;
-private Mat frameForProcess;
-private Mat ffp;
-private Class<?> activitiesList[]=new Class<?>[]{MainActivity.class, ImageActivity.class};
-private HashMap<String,Class<?>> classMap=new HashMap<String,Class<?>>();
+	private JavaCameraView mOpenCvCameraView;
+	private Mat frameForProcess;
+	private Mat ffp;
+	private Class<?> activitiesList[]=new Class<?>[]{MainActivity.class, ImageActivity.class};
+	private HashMap<String,Class<?>> classMap=new HashMap<String,Class<?>>();
+
+	private VideoCapture v;
+
+	private int img_height;
+	private int img_width;
+
+	private int height_start;
+	private int width_start;
+
+	private int height_end;
+	private int width_end;
 
 
 
-private int img_height;
-private int img_width;
+	private final int max_width = 640;
+	private final int max_height = 480;
 
-private int height_start;
-private int width_start;
-
-private int height_end;
-private int width_end;
+	private final int box_width = max_height/2;
+	private final int box_height = max_height/2;
 
 
-private final int box_width = 400;
-private final int box_height = 400;
 
 /*
 * 	ADDED THIS LINE OF CODE TO MAKE IT RUN ON EMULATOR
@@ -55,7 +62,6 @@ private final int box_height = 400;
 * */
 	static {
 		OpenCVLoader.initDebug();
-
 	}
 
 
@@ -115,71 +121,40 @@ private final int box_height = 400;
 	
 			
 			Thread t=new Thread(){
-				public synchronized void start() {
-					
-				}
+			public synchronized void start() {
+
+			}
 
 
-				public void run() {
-					Size size=frameForProcess.size();
-					img_height=(int)size.height;
-					img_width=(int)size.width;
-					
-					width_start=img_width/2-box_width/2;
-					width_end=img_width/2+box_width/2;
-					
-					height_start=img_height/2-box_height/2;
-					height_end=img_height/2+box_height/2;
-					
-					for(int i=height_start;i<=height_end;i++){
-						//for(int j=width_start;j<width_end;j++){
-							double pixel[]=new double[4];
-							//pixel[0]=pixel[1]=pixel[2]=pixel[3]=255;
-							pixel[0]=0;pixel[1]=255;pixel[2]=0;pixel[3]=0;
-							frameForProcess.put(i,width_start,pixel);
-							frameForProcess.put(i,width_end,pixel);
-							//}
-						}
-						
-						for(int j=width_start;j<=width_end;j++){
-							double pixel[]=new double[4];
-							//pixel[0]=pixel[1]=pixel[2]=pixel[3]=255;
-							pixel[0]=0;pixel[1]=255;pixel[2]=0;pixel[3]=0;
-							frameForProcess.put(height_start,j,pixel);
-							frameForProcess.put(height_end,j,pixel);
-						}
+			public void run() {
 
+				Size size=frameForProcess.size();
+				img_height=(int)size.height;
+				img_width=(int)size.width;
 
+				width_start=img_width/2-box_width/2;
+				width_end=img_width/2+box_width/2;
 
+				height_start=img_height/2-box_height/2;
+				height_end=img_height/2+box_height/2;
 
-
-// TODO - Implement decode without tap
-/*
-					// capture region of interest
-					// capture the image inside the green box
-					// -------------------------------------------------------------------------------
-					ffp=new Mat(box_height,box_width,frameForProcess.type());
-					int row=0;
-					int col=0;
-					for(int i=height_start;i<=height_end;i++){
-
-						for(int j=width_start;j<=width_end;j++){
-							ffp.put(row,col++,frameForProcess.get(i,j));
-						}
-						row++;
-						col=0;
+				for(int i=height_start;i<=height_end;i++){
+					//for(int j=width_start;j<width_end;j++){
+						double pixel[]=new double[4];
+						//pixel[0]=pixel[1]=pixel[2]=pixel[3]=255;
+						pixel[0]=0;pixel[1]=255;pixel[2]=0;pixel[3]=0;
+						frameForProcess.put(i,width_start,pixel);
+						frameForProcess.put(i,width_end,pixel);
+						//}
 					}
-					// -------------------------------------------------------------------------------
 
-					// try and decode
-					Bitmap bmInput=createBitMap(frameForProccess);
-					Mat mOutput=optimizeImage(frameForProccess);
-
-					//Bitmap bmOutput=createBitMap(grayscale);
-					Bitmap bmOutput=createBitMap(mOutput);
-
-*/
-						
+					for(int j=width_start;j<=width_end;j++){
+						double pixel[]=new double[4];
+						//pixel[0]=pixel[1]=pixel[2]=pixel[3]=255;
+						pixel[0]=0;pixel[1]=255;pixel[2]=0;pixel[3]=0;
+						frameForProcess.put(height_start,j,pixel);
+						frameForProcess.put(height_end,j,pixel);
+					}
 				}
 			};
 			t.run();
@@ -223,6 +198,7 @@ private final int box_height = 400;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		OpenCVLoader.initDebug();
 		setContentView(R.layout.activity_scanning);
 		classMap.put(getString(R.string.sa_goBackString),activitiesList[0]);
 		classMap.put(getString(R.string.sa_captureImageString),activitiesList[1]);
@@ -230,8 +206,7 @@ private final int box_height = 400;
 		//set flag for keeping the screen from going of.
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		
-		
+
 		//get the JavaCameraView from the view and set it's visibility to visible 
 	    mOpenCvCameraView = (JavaCameraView)findViewById(R.id.scanCamera);
 	    mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
@@ -241,12 +216,10 @@ private final int box_height = 400;
 	    //set OnTouchListener with name touchListener for interaction.
 	    mOpenCvCameraView.setCvCameraViewListener(cameraListener);
 	    mOpenCvCameraView.setOnTouchListener(touchListener);
-	    
 	    //set the camera view focusable.
 	    mOpenCvCameraView.setFocusable(true);
-	    
+		//mOpenCvCameraView.setMaxFrameSize(max_width, max_height);
 
-		
 		
 	}
 	
@@ -264,6 +237,7 @@ private final int box_height = 400;
 		if(mOpenCvCameraView != null) {
 			mOpenCvCameraView.enableView();
 		}
+
     }
 	
 	

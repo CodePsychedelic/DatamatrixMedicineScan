@@ -2,6 +2,7 @@ include ':app'
 rootProject.name = "datamatrixMedicineScan"
 
 // STATIC -- REMOVE IF OTHERWISE
+
 def opencvsdk = '../OpenCV-android-sdk'
 include ':opencv'
 project(':opencv').projectDir = new File(opencvsdk + '/sdk')

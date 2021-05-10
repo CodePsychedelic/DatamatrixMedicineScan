@@ -21,13 +21,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import com.example.datamatrixMedicineScan.R;
 import com.example.datamatrixMedicineScan.dbFunctions.ProductFunctions;
 import com.example.datamatrixMedicineScan.dbFunctions.SerialFunctions;
 import com.example.datamatrixMedicineScan.dbHelper.GTIN;
 import com.example.datamatrixMedicineScan.dbHelper.SerialNumber;
+import com.example.datamatrixMedicineScan.util.ActivityHelper;
 
 
 // LISTS PRODUCTS CATEGORIZED BY SELECTED GTIN, CATEGORY -> SERIAL
@@ -46,6 +46,9 @@ public class ProductSerialList extends AppCompatActivity {
 	private HashMap<String,Class<?>> classMap=new HashMap<String,Class<?>>();
 
 	public String category_id;
+
+	private ActivityHelper activityHelper;
+
 
 	// text watcher for serial search
 	// --------------------------------------------------------------------------------------
@@ -94,26 +97,11 @@ public class ProductSerialList extends AppCompatActivity {
 			HashMap<String,Object> extra=new HashMap<String,Object>();
 			extra.put("code",productSerial);
 			extra.put("GTIN",GTIN_code);
-			createActivity("productInformation",extra);
+			startActivity(activityHelper.createActivity("productInformation",extra));
 		}
 	};
 	// --------------------------------------------------------------------------------------
 
-
-	// Method createAcitvity same as always
-	// --------------------------------------------------------------------------------------
-	public void createActivity(String activity,HashMap<String,Object> extra){
-		Intent intent=new Intent(this,classMap.get(activity));
-		if(extra!=null){
-			Set<String> keySet=extra.keySet();
-			Object keys[]=keySet.toArray();
-			for(int i=0;i<keys.length;i++){
-				intent.putExtra(keys[i].toString(),extra.get(keys[i]).toString());
-			}
-		}
-		startActivity(intent);
-	}
-	// --------------------------------------------------------------------------------------
 
 
 	// returns the GTIN code product ID (used onCreate) -- it basically returns GTIN id.
@@ -153,7 +141,7 @@ public class ProductSerialList extends AppCompatActivity {
 				}
 			}else{
 				// result set is empty --> should return on GTIN list
-				createActivity("GTIN_list",null);
+				startActivity(activityHelper.createActivity("GTIN_list",null));
 				return;
 			}
 		}catch(SQLException e){
@@ -210,6 +198,9 @@ public class ProductSerialList extends AppCompatActivity {
 		setContentView(R.layout.activity_product_serial_list);
 		classMap.put("productInformation", ProductInformationActivity.class);
 		classMap.put("GTIN_list", ProductsListActivity.class);
+
+		activityHelper = new ActivityHelper(this, classMap);
+
 
 		// get information from ProductsList -- problem when reverse
 		Intent intent=getIntent();

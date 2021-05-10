@@ -1,4 +1,4 @@
-package com.example.datamatrixMedicineScan.tools;
+package com.example.datamatrixMedicineScan.util;
 
 import org.opencv.core.Mat;
 
