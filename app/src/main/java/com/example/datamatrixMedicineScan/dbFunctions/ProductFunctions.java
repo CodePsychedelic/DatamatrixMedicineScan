@@ -224,7 +224,7 @@ public class ProductFunctions {
 	// GET GTIN ID BY CODE
 	// ----------------------------------------------------------------------------
 	public int getProductGtinId(String gtinCode) {
-		ProductFunctions pf = new ProductFunctions(this.context);
+		ProductFunctions pf = this;
 		try {
 			GTIN gtin = pf.qb(2).where().eq("GTIN_code", gtinCode).queryForFirst();
 			return gtin.getId();
@@ -603,28 +603,6 @@ public class ProductFunctions {
 
 			}
 
-			/*
-			// inform dialog
-			AlertDialog alertDialog=new AlertDialog.Builder(this.context).create();
-			alertDialog.setTitle("Success");
-			alertDialog.setMessage("The product was updated successfully");
-			alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
-					"OK",
-					new DialogInterface.OnClickListener(){
-
-						@Override
-						public void onClick(DialogInterface dialog,int which){
-							// TODO Auto-generated method stub
-							dialog.dismiss();
-							createActivity(ProductsListActivity.class);
-						}
-					});
-
-			alertDialog.show();
-
-			 */
-
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -638,7 +616,7 @@ public class ProductFunctions {
 
 	public boolean deleteProductInformation(String gtinCode, String serialNumber){
 		// we want product and serial functions
-		ProductFunctions pf=new ProductFunctions(this.context);
+		ProductFunctions pf= this;
 		SerialFunctions sf=new SerialFunctions(this.context);
 
 		try{

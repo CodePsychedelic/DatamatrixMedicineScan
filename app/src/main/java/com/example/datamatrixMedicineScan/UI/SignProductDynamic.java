@@ -22,6 +22,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.datamatrixMedicineScan.R;
+import com.example.datamatrixMedicineScan.util.Error;
+import com.example.datamatrixMedicineScan.util.TextF;
 import com.example.datamatrixMedicineScan.util.Tools;
 import com.j256.ormlite.stmt.QueryBuilder;
 
@@ -65,67 +67,7 @@ public class SignProductDynamic extends AppCompatActivity {
 	private EditText productCodeText;
 	private EditText productNameText;
 	
-	private class TextF extends EditText{
 
-		private String name;
-		private String type;
-		private String ai="-1";
-		
-		public TextF(Context context,String name,String type){
-			super(context);
-			this.name=name;
-			this.type=type;
-		}
-		
-		
-		private void setName(String name){
-			this.name=name;
-		}
-		
-		private String getName(){
-			return name;
-		}
-		
-		private String getType(){
-			return type;
-		}
-		
-		private void setAI(String ai){
-			this.ai=ai;
-		}
-		
-		private String getAI(){
-			return ai;
-		}
-		
-	
-	}
-	
-	private class Error{
-		private TextF field;
-		private String errorCode;
-		
-		public Error(TextF field,String errorCode){
-			this.field=field;
-			this.errorCode=errorCode;
-		}
-		
-		public void setField(TextF field){
-			this.field=field;
-		}
-		public TextF getField(){
-			return field;
-		}
-		
-		public void setErrorCode(String errorCode){
-			this.errorCode=errorCode;
-		}
-		
-		public String getErrorCode(){
-			return errorCode;
-		}
-	}
-	
 	
 	private OnItemSelectedListener typeSelectedListener=new OnItemSelectedListener(){
 
@@ -162,17 +104,20 @@ public class SignProductDynamic extends AppCompatActivity {
 
 
 
-	//itemSelectedListener for spinner
+	//itemSelectedListener for spinner -- for CATEGORY selection
+	// --------------------------------------------------------------------------------------
 	private OnItemSelectedListener categorySelectedListener=new OnItemSelectedListener(){
 
 		@Override
 		public void onItemSelected(AdapterView<?> spinner,View arg1,int pos,
 				long arg3){
 
-			//get Category lectic
-			String category=spinner.getItemAtPosition(pos).toString();
+			// Find category database object
+			// ---------------------------------------------------------
+			String category=spinner.getItemAtPosition(pos).toString();		//get Category lectic
 			Category selected=null;
-			//find the selected category object from category list
+
+			//find the selected DATABASE category object from category list
 			for(int i=0;i<categories.size();i++){
 				if(categories.get(i).getCategory().equals(category)){
 					//when found set the selected to the list category
@@ -182,9 +127,10 @@ public class SignProductDynamic extends AppCompatActivity {
 					break;
 				}
 			}
+			// ---------------------------------------------------------
 
-
-
+			// get types of category (pills, spray, ...)
+			// ---------------------------------------------------------
 			//get a query builder
 			QueryBuilder<Type,Integer> qb= Tools.tf.qb(2);
 
@@ -215,14 +161,12 @@ public class SignProductDynamic extends AppCompatActivity {
 							context,
 							android.R.layout.simple_spinner_item,typeChoices
 						);
-		//finaly set the adapter to the spinner
-		typeSelection.setAdapter(adapter);
-
-
-
-
-
+			//finaly set the adapter to the spinner
+			typeSelection.setAdapter(adapter);
+			// ---------------------------------------------------------
 		}
+		// --------------------------------------------------------------------------------------
+
 
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0){

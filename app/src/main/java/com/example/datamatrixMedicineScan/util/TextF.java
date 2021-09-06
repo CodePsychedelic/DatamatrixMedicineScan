@@ -8,10 +8,16 @@ public class TextF extends androidx.appcompat.widget.AppCompatEditText{
     // NAME AND APPLICATION IDENTIFIER
     private String name;
     private String ai="-1";
-
+    private String type;
     public TextF(Context context, String name){
         super(context);
         this.name=name;
+    }
+
+    public TextF(Context context, String name, String type){
+        super(context);
+        this.name=name;
+        this.type=type;
     }
 
     public String getName(){
@@ -20,6 +26,9 @@ public class TextF extends androidx.appcompat.widget.AppCompatEditText{
 
     public String getAI(){
         return ai;
+    }
+    public String getType(){
+        return type;
     }
 
     public void setName(String name){

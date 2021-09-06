@@ -232,7 +232,7 @@ public class DBMiddle{
 			// application identifiers init
 			// ---------------------------------------------------------------
 			Pattern m_gtinAI=new Pattern(medicineGTINText,"01","n14");
-			Pattern m_expDateAI=new Pattern(medicineExpDateText,"15","n6");	// need to correct this
+			Pattern m_expDateAI=new Pattern(medicineExpDateText,"17","n6");	// need to correct this
 			Pattern m_serialAI=new Pattern(medicineSNText,"21","n1-20");
 			Pattern m_batchAI=new Pattern(medicineBatchText,"10","s1-20");
 			Pattern m_nameAI=new Pattern(medicineNameText,"90","s3-20");		// this is a custom field -- not correct by the standard
